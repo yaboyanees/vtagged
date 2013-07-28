@@ -1,0 +1,75 @@
+<div id="banner">
+	<%= link_to image_tag("marker.png"), root_path %>
+	<p class="logo">venue<span class="lobster">tagged</span></p>
+	<div id="user">
+       <% if user_signed_in? %>
+       <%= image_tag "http://graph.facebook.com/#{current_user.uid}/picture?type=small", :title =>"Hey #{current_user.name}" %>
+       <%= link_to "logout", destroy_user_session_path, :method =>'delete' %>
+       <% else %>
+       <%= link_to image_tag("fb.jpg"), user_omniauth_authorize_path(:facebook) %>
+       <% end %>
+    </div>
+<%= render :partial => "venues/search" %>
+</div>
+
+<div id="main">
+	<div id="list">
+	<% @venues.shuffle.each do |venue| %>
+	<table>
+	<tr>
+	<span class="trbl"><%= truncate(venue.name, :separator => '...',:length => 25)%></span>
+	</tr>
+
+	<tr>
+		<% if venue.image.blank? %>
+		<td class="pholder"><%= image_tag("photoholder.jpg") %><td>
+		<% else %>
+		<td><%= image_tag venue.image_url.to_s %></td>
+  	    <% end %>
+  	    	<% if venue.price.blank? %>
+				Tag a Quote <%= best_in_place venue, :price, :type => :select, :collection => [[60, "$60-80"], [80, "$80-$100"],
+[100, "$100-$120"], [120, "$120-$140"], [140, "$140+"]] %>
+			<% else %> 
+				Price Range: <%= best_in_place venue, :price, :type => :select, :collection => [[60, "$60-80"], [80, "$80-$100"],
+[100, "$100-$120"], [120, "$120-$140"], [140, "$140+"]] %>
+			<% end %>
+</br>
+		<% if venue.min.blank? %>
+  			Tag a Minimum<%= best_in_place venue, :min, :type => :select, :collection => [[60, "60-80"], [80, "80-100"],
+[100, "100-120"], [120, "120-140"], [140, "140+"]] %>
+  		<% else %>
+  			Guest Minimum: <%= best_in_place venue, :min, :type => :select, :collection => [[60, "60-80"], [80, "80-100"],
+[100, "100-120"], [120, "120-140"], [140, "140+"]] %>
+  		<% end %>
+<% if user_signed_in? %>
+</br><%= link_to 'Check Availability', calendar_path %>
+<% else %>
+</br><%= link_to 'Check Availability', user_omniauth_authorize_path(:facebook) %>
+<% end %>
+</br>
+		<% if venue.website.blank? %>
+		Tag a Site<%= best_in_place venue, :website %>
+		<% else %>
+		<%= link_to 'More Info', venue.website %>
+		<% end %>
+</br>	
+		<div id="vote">
+		Score: <%= pluralize venue.reputation_for(:votes).to_i, "" %>
+		<% if user_signed_in? %>
+		<%= link_to image_tag('love.png'), vote_venue_path(venue, type: "up"), method: "post" %>
+		<%= link_to image_tag('hate.png'), vote_venue_path(venue, type: "down"), method: "post" %>
+		<% else %>
+		<%= link_to 'Want to Vote?', user_omniauth_authorize_path(:facebook) %>
+		<% end %>
+		</div>
+	</tr>
+	</table>
+<% end %>
+<%= paginate @venues, :outer_window => 0 %>
+	</div>
+		<%= gmaps("markers" => {"data" => @json}) %>
+</div>
+<div id="footer">
+	<span class="fback"><a href="mailto:contact@venuetagged.com">Send Us Feedback/Suggestions</a></span>
+</div>
+<%= link_to 'new', new_venue_path %>

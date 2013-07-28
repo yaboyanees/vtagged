@@ -1,0 +1,58 @@
+.gmaps4rails_map {
+  width: 850px;
+  height: 530px;
+  float:right;
+  margin: 20px 20px 0 0;
+  border: 1px solid #d5d5d6;
+}
+#infowindow {	
+	width: 295px;
+	height: 125px;
+	overflow: hidden;
+	margin:0;
+	padding:0;
+	background-color: #131313;
+}
+#infowindow img{	
+	float:left;
+	width: 120px;
+	height: 70px;
+	margin:0;
+	padding: 5px 5px 0 5px;
+}
+.vote{	
+	text-align:center;
+}
+#infowindow h2 {
+	width:100%;
+	height:20px;
+	font:bold 16px Georgia, serif;
+	text-align:center;
+	color: white;
+	margin:0;
+	padding-top:5px;
+}
+#infowindow p{	
+	margin:0;
+	padding:0;
+	color: white;
+}
+#infowindow a{	
+	margin:0;
+	padding:0;
+	color: white;
+	text-decoration: underline;
+}
+.price {
+	float:left;
+	color: white;
+}
+.min {
+	float:left;
+	color: white;
+}
+.xtra {
+	float:left;
+	color: white;
+	padding-left: 5px;
+}

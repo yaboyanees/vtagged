@@ -1,0 +1,6 @@
+<%= form_for @search do |f| %>
+    <div class="searchbar">
+    <%= f.text_field :name_or_city_or_price_or_min_contains, :size => "25", :placeholder => "name, price, minimum, etc..." %>
+    <%= link_to(image_tag("reset.png"), root_path, :title =>"Reset Search") %>
+    </div>
+<% end %>

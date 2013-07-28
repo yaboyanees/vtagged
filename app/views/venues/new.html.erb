@@ -1,0 +1,13 @@
+
+<div id="editvenue">
+<h1>Add a New Venue</h1>
+	<%= render 'form' %>
+	<div id="fbedit">
+	<p class="hback"><%= link_to 'Cancel', venues_path %></p>
+	</div>
+</div>
+
+	<h1>Please Sign-in to Add a New Venue</h1>
+	 <div id="fbedit"><%= link_to image_tag("fb.jpg"), user_omniauth_authorize_path(:facebook) %>
+	 	</br><p class="hback"><%= link_to 'Back Home', venues_path %></p>
+	 </div>

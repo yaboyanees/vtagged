@@ -1,0 +1,14 @@
+<% if user_signed_in? %>
+<div id="editvenue">
+<h1>Tag Venue</h1>
+	<%= render 'form' %>
+	<div id="fbedit">
+	<p class="hback"><%= link_to 'No Changes', venues_path %></p>
+	</div>
+</div>
+<% else %>
+	<h1>Please Sign-in to Edit</h1>
+	 <div id="fbedit"><%= link_to image_tag("fb.jpg"), user_omniauth_authorize_path(:facebook) %>
+	 	</br><p class="hback"><%= link_to 'Back Home', venues_path %></p>
+	 </div>
+<% end %>
