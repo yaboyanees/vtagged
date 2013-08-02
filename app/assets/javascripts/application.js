@@ -11,7 +11,11 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
+//= require jquery-1.7.1.min.js 
+//= require jquery-ui-1.8.16.custom.min.js
+//= require jiffies.js
 //= require jquery.purr
 //= require best_in_place
 //= require gmaps4rails/all_apis.js
