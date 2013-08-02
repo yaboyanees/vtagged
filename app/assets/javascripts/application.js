@@ -14,4 +14,12 @@
 //= require jquery_ujs
 //= require jquery.purr
 //= require best_in_place
+//= require gmaps4rails/all_apis.js
+//= require gmaps4rails/bing.js
+//= require gmaps4rails/gmaps4rails.base.js.coffee
+//= require gmaps4rails/gmaps4rails.bing.js.coffee
+//= require gmaps4rails/gmaps4rails.googlemaps.js.coffee
+//= require gmaps4rails/gmaps4rails.base.js
+//= require gmaps4rails/googlemaps.js
+//= require gmap3.min.js
 //= require_tree .
